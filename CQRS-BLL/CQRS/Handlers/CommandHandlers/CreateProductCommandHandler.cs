@@ -1,10 +1,11 @@
 ﻿using CQRS_BLL.CQRS.Commands.Requests;
 using CQRS_BLL.CQRS.Commands.Responses;
 using CQRS_DAL.Repositories.Abstract;
+using MediatR;
 
 namespace CQRS_BLL.CQRS.Handlers.CommandHandlers
 {
-    public class CreateProductCommandHandler
+    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest, CreateProductCommandResponse>
     {
         private readonly IProductCommandRepository _productRepository;
 
@@ -13,7 +14,7 @@ namespace CQRS_BLL.CQRS.Handlers.CommandHandlers
             _productRepository = productRepository;
         }
 
-        public CreateProductCommandResponse CreateProduct(CreateProductCommandRequest request)
+        public async Task<CreateProductCommandResponse> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
             var data = _productRepository.InsertProduct(new()
             {

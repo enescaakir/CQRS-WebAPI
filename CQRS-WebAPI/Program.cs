@@ -1,9 +1,9 @@
 
 using CQRS_BLL.CQRS.Handlers.CommandHandlers;
 using CQRS_BLL.CQRS.Handlers.QueryHandlers;
-using CQRS_DAL.Repositories.Abstract;
-using CQRS_DAL.Repositories;
 using CQRS_DAL;
+using CQRS_DAL.Repositories;
+using CQRS_DAL.Repositories.Abstract;
 
 namespace CQRS_WebAPI
 {
@@ -33,6 +33,11 @@ namespace CQRS_WebAPI
             builder.Services.AddTransient<DeleteProductCommandHandler>();
             builder.Services.AddTransient<GetProductsQueryHandler>();
             builder.Services.AddTransient<GetProductByIdQueryHandler>();
+
+            builder.Services.AddMediatR(opt =>
+            {
+                opt.RegisterServicesFromAssembly(typeof(CreateProductCommandHandler).Assembly);
+            });
 
             var app = builder.Build();
 

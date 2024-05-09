@@ -1,10 +1,11 @@
 ﻿using CQRS_BLL.CQRS.Queries.Requests;
 using CQRS_BLL.CQRS.Queries.Responses;
 using CQRS_DAL.Repositories.Abstract;
+using MediatR;
 
 namespace CQRS_BLL.CQRS.Handlers.QueryHandlers
 {
-    public class GetProductByIdQueryHandler
+    public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQueryRequest, GetProductByIdQueryResponse>
     {
         private readonly IProductQueryRepository _productRepository;
 
@@ -13,7 +14,7 @@ namespace CQRS_BLL.CQRS.Handlers.QueryHandlers
             _productRepository = productRepository;
         }
 
-        public GetProductByIdQueryResponse GetProductById(GetProductByIdQueryRequest request)
+        public async Task<GetProductByIdQueryResponse> Handle(GetProductByIdQueryRequest request, CancellationToken cancellationToken)
         {
             var data = _productRepository.GetProductById(request.Id);
             if (data == null)

@@ -1,6 +1,9 @@
-﻿namespace CQRS_BLL.CQRS.Commands.Requests
+﻿using CQRS_BLL.CQRS.Commands.Responses;
+using MediatR;
+
+namespace CQRS_BLL.CQRS.Commands.Requests
 {
-    public class CreateProductCommandRequest
+    public class CreateProductCommandRequest : IRequest<CreateProductCommandResponse>
     {
         public bool IsActive { get; set; }
         public DateTime CreationTime { get; set; }
