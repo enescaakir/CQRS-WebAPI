@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  cqrs-api:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5001:80"
+    depends_on:
+      - mongodb
+      - postgresdb
+  mongodb:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: enes123
+    ports:
+      - "27017:27017"
+  postgresdb:
+    image: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: enes123
+    ports:
+      - "5432:5432"
