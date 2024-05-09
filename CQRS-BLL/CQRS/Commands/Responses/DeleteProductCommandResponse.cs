@@ -1,6 +1,6 @@
 ﻿namespace CQRS_BLL.CQRS.Commands.Responses
 {
-    public class GetProductsCommandResponse
+    public class DeleteProductCommandResponse
     {
         public bool IsSuccess { get; set; }
     }

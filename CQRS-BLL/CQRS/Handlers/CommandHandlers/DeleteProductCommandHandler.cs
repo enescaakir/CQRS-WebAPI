@@ -13,13 +13,13 @@ namespace CQRS_BLL.CQRS.Handlers.CommandHandlers
             _productRepository = productRepository;
         }
 
-        public GetProductsCommandResponse DeleteProduct(DeleteProductCommandRequest request)
+        public DeleteProductCommandResponse DeleteProduct(DeleteProductCommandRequest request)
         {
             var data = _productRepository.DeleteProduct(request.Id);
             if (data == null)
-                return new GetProductsCommandResponse();
+                return new DeleteProductCommandResponse();
 
-            return new GetProductsCommandResponse { IsSuccess = true };
+            return new DeleteProductCommandResponse { IsSuccess = true };
         }
     }
 }
