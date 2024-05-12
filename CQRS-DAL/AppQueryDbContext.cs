@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 
-namespace CQRS_DAL.Repositories
+namespace CQRS_DAL
 {
     public class AppQueryDbContext
     {
@@ -8,7 +8,7 @@ namespace CQRS_DAL.Repositories
 
         public AppQueryDbContext()
         {
-            mongoClient = new MongoClient("mongodb://admin:enes123@localhost:27017/");
+            mongoClient = new MongoClient("mongodb://admin:enes123@mongodb:27017/");
         }
     }
 }
