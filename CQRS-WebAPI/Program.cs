@@ -28,12 +28,6 @@ namespace CQRS_WebAPI
             builder.Services.AddScoped<IProductCommandRepository, ProductCommandRepository>();
             builder.Services.AddScoped<IProductQueryRepository, ProductQueryRepository>();
 
-            //Command-Query Handlers
-            builder.Services.AddTransient<CreateProductCommandHandler>();
-            builder.Services.AddTransient<DeleteProductCommandHandler>();
-            builder.Services.AddTransient<GetProductsQueryHandler>();
-            builder.Services.AddTransient<GetProductByIdQueryHandler>();
-
             builder.Services.AddMediatR(opt =>
             {
                 opt.RegisterServicesFromAssembly(typeof(CreateProductCommandHandler).Assembly);
